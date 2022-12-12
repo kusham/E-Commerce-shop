@@ -2,14 +2,15 @@ const userModal = require("../models/userModal");
 
 module.exports.createUser = async (req, res) => {
   const email = req.body.email;
-  const findUser = await userModal.findOne(email);
+  const findUser = await userModal.findOne({ email: email });
   if (!findUser) {
     // create new user
-    const newUser = userModal.create(req.body);
+    const newUser = await userModal.create(req.body);
+    res.json(newUser);
   } else {
     res.json({
-      message: "User already exists",
       success: false,
+      message: "User already exists",
     });
   }
 };
