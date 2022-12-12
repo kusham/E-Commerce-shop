@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const dbConnect = require("./config/dbConnect");
 const authRoute = require("./routes/authRoutes");
 const bodyParser = require("body-parser");
+const { notFound, errorHandler } = require("./middlewares/errorHandler");
 const app = express();
 dotenv.config();
 
@@ -16,3 +17,5 @@ app.listen(PORT, () => {
 });
 
 app.use("/api/user", authRoute);
+app.use(notFound);
+app.use(errorHandler);
