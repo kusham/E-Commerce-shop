@@ -42,7 +42,7 @@ module.exports.getAllUsers = asyncHandler(async (req, res) => {
   }
 });
 
-// get single users
+// get single user
 module.exports.getSingleUser = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
@@ -52,3 +52,15 @@ module.exports.getSingleUser = asyncHandler(async (req, res) => {
     throw new Error(error);
   }
 });
+
+
+// delete user
+module.exports.deleteUser = asyncHandler(async (req, res) => {
+    try {
+      const { id } = req.params;
+      const deletedUser = await userModal.findByIdAndDelete(id);
+      res.json(deletedUser);
+    } catch (error) {
+      throw new Error(error);
+    }
+  });
