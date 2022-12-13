@@ -53,14 +53,35 @@ module.exports.getSingleUser = asyncHandler(async (req, res) => {
   }
 });
 
-
 // delete user
 module.exports.deleteUser = asyncHandler(async (req, res) => {
-    try {
-      const { id } = req.params;
-      const deletedUser = await userModal.findByIdAndDelete(id);
-      res.json(deletedUser);
-    } catch (error) {
-      throw new Error(error);
-    }
-  });
+  try {
+    const { id } = req.params;
+    const deletedUser = await userModal.findByIdAndDelete(id);
+    res.json(deletedUser);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+// update user
+module.exports.updateUser = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedUser = await userModal.findByIdAndUpdate(
+      id,
+      {
+        firstName: req?.body?.firstName,
+        lastName: req?.body?.lastName,
+        email: req?.body?.email,
+        mobile: req?.body?.mobile,
+      },
+      {
+        new: true,
+      }
+    );
+    res.json(updatedUser);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
