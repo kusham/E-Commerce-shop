@@ -42,4 +42,13 @@ module.exports.getAllUsers = asyncHandler(async (req, res) => {
   }
 });
 
-
+// get single users
+module.exports.getSingleUser = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params;
+    const getUser = await userModal.findById(id);
+    res.json(getUser);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
