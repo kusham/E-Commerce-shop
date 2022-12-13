@@ -5,6 +5,7 @@ const {
   getAllUsers,
   getSingleUser,
   deleteUser,
+  updateUser,
 } = require("../controllers/userControllers");
 
 const router = express.Router();
@@ -14,5 +15,7 @@ router.post("/login", loginUser);
 router.get("/allUsers", getAllUsers);
 router.get("/:id", getSingleUser);
 router.delete("/:id", deleteUser);
+router.put("/:id", updateUser);
+
 
 module.exports = router;
