@@ -90,7 +90,7 @@ module.exports.updateUser = asyncHandler(async (req, res) => {
 module.exports.blockUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
   try {
-    const block = userModal.findByIdAndUpdate(
+    const block = await userModal.findByIdAndUpdate(
       id,
       {
         isBlocked: true,
@@ -109,7 +109,7 @@ module.exports.blockUser = asyncHandler(async (req, res) => {
 module.exports.unBlockUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
   try {
-    const block = userModal.findByIdAndUpdate(
+    const block = await userModal.findByIdAndUpdate(
       id,
       {
         isBlocked: false,
