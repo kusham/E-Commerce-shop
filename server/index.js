@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const dbConnect = require("./config/dbConnect");
 const authRoute = require("./routes/authRoutes");
 const bodyParser = require("body-parser");
-const { notFound, errorHandler } = require("./middlewares/errorHandler");
+const { notFound, errorHandler } = require("./middleware/errorHandler");
 const app = express();
 dotenv.config();
 
