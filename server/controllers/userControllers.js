@@ -67,9 +67,9 @@ module.exports.deleteUser = asyncHandler(async (req, res) => {
 // update user
 module.exports.updateUser = asyncHandler(async (req, res) => {
   try {
-    const { id } = req.params;
+    const { _id } = req.user;
     const updatedUser = await userModal.findByIdAndUpdate(
-      id,
+      _id,
       {
         firstName: req?.body?.firstName,
         lastName: req?.body?.lastName,
