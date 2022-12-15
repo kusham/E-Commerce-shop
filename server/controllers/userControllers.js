@@ -85,3 +85,41 @@ module.exports.updateUser = asyncHandler(async (req, res) => {
     throw new Error(error);
   }
 });
+
+// Block user
+module.exports.blockUser = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const block = userModal.findByIdAndUpdate(
+      id,
+      {
+        isBlocked: true,
+      },
+      { new: true }
+    );
+    req.json({
+      message: "user is blocked",
+    });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+// unBlock user
+module.exports.unBlockUser = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const block = userModal.findByIdAndUpdate(
+      id,
+      {
+        isBlocked: false,
+      },
+      { new: true }
+    );
+    req.json({
+      message: "user is un-blocked",
+    });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
