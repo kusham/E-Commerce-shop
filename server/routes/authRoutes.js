@@ -9,13 +9,13 @@ const {
   blockUser,
   unBlockUser,
 } = require("../controllers/userControllers");
-const authMiddleware = require("../middleware/middleware");
+const {authMiddleware, isAdmin} = require("../middleware/middleware");
 
 const router = express.Router();
 
 router.post("/register", createUser);
 router.post("/login", loginUser);
-router.get("/allUsers", authMiddleware, getAllUsers);
+router.get("/allUsers", isAdmin, getAllUsers);
 router.get("/:id", getSingleUser);
 router.delete("/:id", deleteUser);
 router.put("/edit-user", updateUser);
