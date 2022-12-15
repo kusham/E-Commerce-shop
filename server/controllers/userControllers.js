@@ -1,6 +1,7 @@
 const userModal = require("../models/userModal");
 const asyncHandler = require("express-async-handler");
 const { generateToken } = require("../config/jwtToken");
+const validateMongodbId = require("../utils/validateMongodbId");
 
 module.exports.createUser = asyncHandler(async (req, res) => {
   const email = req.body.email;
@@ -46,6 +47,7 @@ module.exports.getAllUsers = asyncHandler(async (req, res) => {
 module.exports.getSingleUser = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
+    validateMongodbId(id);
     const getUser = await userModal.findById(id);
     res.json(getUser);
   } catch (error) {
@@ -57,6 +59,7 @@ module.exports.getSingleUser = asyncHandler(async (req, res) => {
 module.exports.deleteUser = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
+    validateMongodbId(id);
     const deletedUser = await userModal.findByIdAndDelete(id);
     res.json(deletedUser);
   } catch (error) {
@@ -68,6 +71,7 @@ module.exports.deleteUser = asyncHandler(async (req, res) => {
 module.exports.updateUser = asyncHandler(async (req, res) => {
   try {
     const { _id } = req.user;
+    validateMongodbId(id);
     const updatedUser = await userModal.findByIdAndUpdate(
       _id,
       {
@@ -89,6 +93,7 @@ module.exports.updateUser = asyncHandler(async (req, res) => {
 // Block user
 module.exports.blockUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
+  validateMongodbId(id);
   try {
     const block = await userModal.findByIdAndUpdate(
       id,
@@ -108,6 +113,7 @@ module.exports.blockUser = asyncHandler(async (req, res) => {
 // unBlock user
 module.exports.unBlockUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
+  validateMongodbId(id);
   try {
     const block = await userModal.findByIdAndUpdate(
       id,
