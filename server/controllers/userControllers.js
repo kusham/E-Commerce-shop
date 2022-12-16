@@ -1,4 +1,4 @@
-const userModal = require("../models/userModal");
+const userModal = require("../models/userModel");
 const asyncHandler = require("express-async-handler");
 const { generateToken } = require("../config/jwtToken");
 const validateMongodbId = require("../utils/validateMongodbId");
