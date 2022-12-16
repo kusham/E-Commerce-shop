@@ -8,6 +8,7 @@ const {
   updateUser,
   blockUser,
   unBlockUser,
+  handleRefreshToken,
 } = require("../controllers/userControllers");
 const {authMiddleware, isAdmin} = require("../middleware/middleware");
 
@@ -21,6 +22,8 @@ router.delete("/:id", deleteUser);
 router.put("/edit-user", updateUser);
 router.put("/block-user/:id", blockUser);
 router.put("/unBlock-user/:id", unBlockUser);
+router.put("/refresh", handleRefreshToken);
+
 
 
 
