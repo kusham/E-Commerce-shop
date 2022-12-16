@@ -12,7 +12,7 @@ module.exports.createProduct = asyncHandler(async (req, res) => {
 });
 
 // get product
-module.exports.createProduct = asyncHandler(async (req, res) => {
+module.exports.getProduct = asyncHandler(async (req, res) => {
   try {
     const findProduct = await productModel.findById(id);
     req.json(findProduct);
