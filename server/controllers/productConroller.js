@@ -10,3 +10,13 @@ module.exports.createProduct = asyncHandler(async (req, res) => {
     throw new Error(error);
   }
 });
+
+// get product
+module.exports.createProduct = asyncHandler(async (req, res) => {
+  try {
+    const findProduct = await productModel.findById(id);
+    req.json(findProduct);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
