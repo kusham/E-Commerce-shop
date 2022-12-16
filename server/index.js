@@ -1,10 +1,15 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const dbConnect = require("./config/dbConnect");
-const authRoute = require("./routes/authRoutes");
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
+
+
+const dbConnect = require("./config/dbConnect");
+const authRoute = require("./routes/authRoutes");
+const productRoute = require("./routes/productRoutes");
 const { notFound, errorHandler } = require("./middleware/errorHandler");
+
+
 const app = express();
 dotenv.config();
 
@@ -18,6 +23,8 @@ app.listen(PORT, () => {
 });
 
 app.use("/api/user", authRoute);
+app.use("/api/product", productRoute);
+
 app.use(notFound);
 app.use(errorHandler);
 
