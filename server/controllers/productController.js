@@ -27,7 +27,12 @@ module.exports.getProduct = asyncHandler(async (req, res) => {
 // get all product
 module.exports.getAllProduct = asyncHandler(async (req, res) => {
   try {
-    const findAllProduct = await productModel.find();
+    const queryObj = { ...req.query };
+    const excludeFields = ["page", "sort", "limit", "fields"];
+     excludeFields.forEach((element) => {
+      delete queryObj[element];
+    });
+    const findAllProduct = await productModel.find(queryObj);
     req.json(findAllProduct);
   } catch (error) {
     throw new Error(error);
