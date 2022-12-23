@@ -27,6 +27,7 @@ module.exports.getProduct = asyncHandler(async (req, res) => {
 // get all product
 module.exports.getAllProduct = asyncHandler(async (req, res) => {
   try {
+    // filtering
     const queryObj = { ...req.query };
     const excludeFields = ["page", "sort", "limit", "fields"];
     excludeFields.forEach((element) => {
@@ -35,6 +36,17 @@ module.exports.getAllProduct = asyncHandler(async (req, res) => {
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `${match}`);
     const findAllProduct = await productModel.find(JSON.parse(queryStr));
+
+    // sorting
+    if(req.query.sort) {
+      const sortBy = req.query.sort.split(",").join(" ");
+      query = query.sort(sortBy);
+    } else {
+      query = query.sort("-createdAt")
+    }
+
+    // limiting the fields
+    
     req.json(findAllProduct);
   } catch (error) {
     throw new Error(error);
