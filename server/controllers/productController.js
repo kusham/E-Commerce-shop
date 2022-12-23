@@ -29,10 +29,12 @@ module.exports.getAllProduct = asyncHandler(async (req, res) => {
   try {
     const queryObj = { ...req.query };
     const excludeFields = ["page", "sort", "limit", "fields"];
-     excludeFields.forEach((element) => {
+    excludeFields.forEach((element) => {
       delete queryObj[element];
     });
-    const findAllProduct = await productModel.find(queryObj);
+    let queryStr = JSON.stringify(queryObj);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `${match}`);
+    const findAllProduct = await productModel.find(JSON.parse(queryStr));
     req.json(findAllProduct);
   } catch (error) {
     throw new Error(error);
