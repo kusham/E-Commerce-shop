@@ -46,7 +46,12 @@ module.exports.getAllProduct = asyncHandler(async (req, res) => {
     }
 
     // limiting the fields
-    
+    if(req.query.fields) {
+      const fields = req.query.sort.split(",").join(" ");
+      query = query.select(fields);
+    } else {
+      query = query.select("-__v")
+    }
     req.json(findAllProduct);
   } catch (error) {
     throw new Error(error);
