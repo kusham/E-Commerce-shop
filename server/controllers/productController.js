@@ -4,6 +4,9 @@ const productModel = require("../models/productModel");
 // create product
 module.exports.createProduct = asyncHandler(async (req, res) => {
   try {
+    if (req.body.title) {
+      req.body.slug = slugify(req.body.title);
+    }
     const newProduct = await new productModel.create(req.body);
     res.json(newProduct);
   } catch (error) {
