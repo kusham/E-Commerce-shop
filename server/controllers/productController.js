@@ -33,3 +33,32 @@ module.exports.getAllProduct = asyncHandler(async (req, res) => {
     throw new Error(error);
   }
 });
+
+// update product
+module.exports.updateProduct = asyncHandler(async (req, res) => {
+  try {
+    const id = req.params;
+    if (req.body.title) {
+      req.body.slug = slugify(req.body.title);
+    }
+    const updatedProduct = await productModel.findOneAndUpdate(
+      { id },
+      req.body,
+      { new: true }
+    );
+    res.json(updatedProduct);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+// delete product
+module.exports.deleteProduct = asyncHandler(async (req, res) => {
+  try {
+    const id = req.params;
+    const deletedProduct = await productModel.findByIdAndDelete(id);
+    res.json(deletedProduct);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
