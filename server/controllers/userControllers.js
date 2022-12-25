@@ -204,6 +204,27 @@ module.exports.updatePassword = asyncHandler(async (req, res) => {
   }
 });
 
+// forget password token
+module.exports.forgetPasswordToken = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  const user = await userModal.findOne({ email });
+  if (!user) throw Error("User not found with this email");
+
+  try {
+    const token = await userModal.createPasswordResetToken();
+    await userModal.save();
+    const resetURL = `Hi, please follow this link to reset your password. This link is valid till 10 minutes from now. <a href='http://localhost:5000/api/user/reset-password/${token}'>Click Here</a>`;
+    const data = {
+      to: email,
+      text: "Hey user",
+      subject: "forget password link",
+      htm: resetURL,
+    };
+    // send email
+    res.json(token);
+  } catch (error) {}
+});
+
 // reset password
 module.exports.resetPassword = asyncHandler(async (req, res) => {
   const { password } = req.body;
