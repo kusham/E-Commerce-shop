@@ -72,6 +72,7 @@ userSchema.methods.createPasswordResetToken = async function () {
     .update(resetToken)
     .digest("hex");
   this.passwordResetExpires = Date.now() + 30 * 60 * 1000; //10 min
+  return resetToken;
 };
 
 //Export the model
