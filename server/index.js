@@ -8,6 +8,8 @@ const slugify = require('slugify');
 const dbConnect = require("./config/dbConnect");
 const authRoute = require("./routes/authRoutes");
 const productRoute = require("./routes/productRoutes");
+const blogRoute = require("./routes/blogRoutes");
+
 const { notFound, errorHandler } = require("./middleware/errorHandler");
 
 const app = express();
@@ -25,6 +27,8 @@ app.listen(PORT, () => {
 
 app.use("/api/user", authRoute);
 app.use("/api/product", productRoute);
+app.use("/api/blog", blogRoute);
+
 
 app.use(notFound);
 app.use(errorHandler);
