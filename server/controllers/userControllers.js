@@ -223,7 +223,9 @@ module.exports.forgetPasswordToken = asyncHandler(async (req, res) => {
     };
     sendEmail(data);
     res.json(token);
-  } catch (error) {}
+  } catch (error) {
+    throw Error(error);
+  }
 });
 
 // reset password
