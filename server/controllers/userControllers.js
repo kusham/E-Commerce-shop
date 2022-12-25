@@ -4,6 +4,7 @@ const { generateToken } = require("../config/jwtToken");
 const validateMongodbId = require("../utils/validateMongodbId");
 const { generateRefreshToken } = require("../config/refreshToken");
 const jwt = require("jsonwebtoken");
+const sendEmail = require("./emailController");
 
 module.exports.createUser = asyncHandler(async (req, res) => {
   const email = req.body.email;
@@ -220,7 +221,7 @@ module.exports.forgetPasswordToken = asyncHandler(async (req, res) => {
       subject: "forget password link",
       htm: resetURL,
     };
-    // send email
+    sendEmail(data);
     res.json(token);
   } catch (error) {}
 });
