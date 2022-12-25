@@ -5,10 +5,7 @@ const blogModel = require("../models/blogModel");
 module.exports.createBlog = asyncHandler(async (req, res) => {
   try {
     const newBlog = await blogModel.save(req.body);
-    res.json({
-      status: "success",
-      newBlog,
-    });
+    res.json(newBlog);
   } catch (error) {
     throw Error(error);
   }
