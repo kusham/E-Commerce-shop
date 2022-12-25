@@ -28,5 +28,3 @@ app.use("/api/product", productRoute);
 
 app.use(notFound);
 app.use(errorHandler);
-
-morgan;
