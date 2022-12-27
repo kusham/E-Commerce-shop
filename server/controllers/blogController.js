@@ -51,3 +51,14 @@ module.exports.getAllBlog = asyncHandler(async (req, res) => {
       throw Error(error);
     }
   });
+
+  // delete blog
+module.exports.deleteBlog = asyncHandler(async (req, res) => {
+    const {id} = req.params;
+    try {
+      const deletedBlog = await blogModel.findByIdAndDelete(id);
+      res.json(deletedBlog);
+    } catch (error) {
+      throw Error(error);
+    }
+  });
