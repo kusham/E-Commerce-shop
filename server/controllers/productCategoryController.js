@@ -39,3 +39,15 @@ module.exports.deleteCategory = asyncHandler(async (req, res) => {
     throw Error(error);
   }
 });
+
+// get category
+module.exports.getCategory = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  validateMongodbId(id);
+  try {
+    const category = await categoryModel.findById(id);
+    res.json(category);
+  } catch (error) {
+    throw Error(error);
+  }
+});
