@@ -27,3 +27,15 @@ module.exports.updateCategory = asyncHandler(async (req, res) => {
     throw Error(error);
   }
 });
+
+// delete category
+module.exports.deleteCategory = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  validateMongodbId(id);
+  try {
+    const deletedCategory = await categoryModel.findByIdAndDelete(id);
+    res.json(deletedCategory);
+  } catch (error) {
+    throw Error(error);
+  }
+});
