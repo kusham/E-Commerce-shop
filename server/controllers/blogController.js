@@ -31,7 +31,7 @@ module.exports.getBlog = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongodbId(id);
   try {
-    const getBlog = await blogModel.findById(id).populate("likes");
+    const getBlog = await blogModel.findById(id).populate("likes").populate("disLikes");
     const updateViews = await blogModel.findByIdAndUpdate(
       id,
       {
