@@ -41,3 +41,13 @@ module.exports.getBlog = asyncHandler(async (req, res) => {
     throw Error(error);
   }
 });
+
+// get all blogs
+module.exports.getAllBlog = asyncHandler(async (req, res) => {
+    try {
+      const getAllBlogs = await blogModel.find();
+      res.json(getAllBlogs);
+    } catch (error) {
+      throw Error(error);
+    }
+  });
