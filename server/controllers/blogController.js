@@ -105,3 +105,49 @@ module.exports.likeBlog = asyncHandler(async (req, res) => {
     res.json(blog);
   }
 });
+
+
+
+// dis like blog
+module.exports.disLikeBlog = asyncHandler(async (req, res) => {
+    const { blogId } = req.body;
+    const blog = await blogModel.findById(blogId);
+    const loginUserId = req?.user?._id;
+    const isDisLiked = blog?.isLiked;
+    const alreadyLiked = blog?.disLikes?.find(
+      (userId) => userId?.toString() === loginUserId?.toString()
+    );
+    if (alreadyLiked) {
+      const blog = await blogModel.findByIdAndUpdate(
+        blogId,
+        {
+          $pull: { likes: loginUserId },
+          isLiked: false,
+        },
+        { new: true }
+      );
+      res.json(blog);
+    }
+    if (isDisLiked) {
+      const blog = await blogModel.findByIdAndUpdate(
+        blogId,
+        {
+          $pull: { disLikes: loginUserId },
+          isDisLiked: false,
+        },
+        { new: true }
+      );
+      res.json(blog);
+    } else {
+      const blog = await blogModel.findByIdAndUpdate(
+        blogId,
+        {
+          $push: { disLikes: loginUserId },
+          isDisLiked: true,
+        },
+        { new: true }
+      );
+      res.json(blog);
+    }
+  });
+  
