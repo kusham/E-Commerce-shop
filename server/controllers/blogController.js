@@ -31,15 +31,15 @@ module.exports.getBlog = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongodbId(id);
   try {
-    const getBlog = await blogModel.findById(id);
-    await blogModel.findByIdAndUpdate(
+    const getBlog = await blogModel.findById(id).populate("likes");
+    const updateViews = await blogModel.findByIdAndUpdate(
       id,
       {
         $inc: { numViews: 1 },
       },
       { new: true }
     );
-    res.json(getBlog);
+    res.json(updateViews);
   } catch (error) {
     throw Error(error);
   }
