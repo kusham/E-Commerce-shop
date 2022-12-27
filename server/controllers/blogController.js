@@ -44,21 +44,64 @@ module.exports.getBlog = asyncHandler(async (req, res) => {
 
 // get all blogs
 module.exports.getAllBlog = asyncHandler(async (req, res) => {
-    try {
-      const getAllBlogs = await blogModel.find();
-      res.json(getAllBlogs);
-    } catch (error) {
-      throw Error(error);
-    }
-  });
+  try {
+    const getAllBlogs = await blogModel.find();
+    res.json(getAllBlogs);
+  } catch (error) {
+    throw Error(error);
+  }
+});
 
-  // delete blog
+// delete blog
 module.exports.deleteBlog = asyncHandler(async (req, res) => {
-    const {id} = req.params;
-    try {
-      const deletedBlog = await blogModel.findByIdAndDelete(id);
-      res.json(deletedBlog);
-    } catch (error) {
-      throw Error(error);
-    }
-  });
+  const { id } = req.params;
+  try {
+    const deletedBlog = await blogModel.findByIdAndDelete(id);
+    res.json(deletedBlog);
+  } catch (error) {
+    throw Error(error);
+  }
+});
+
+// like blog
+module.exports.likeBlog = asyncHandler(async (req, res) => {
+  const { blogId } = req.body;
+  const blog = await blogModel.findById(blogId);
+  const loginUserId = req?.user?._id;
+  const isLiked = blog?.isLiked;
+  const alreadyDisLiked = blog?.disLikes?.find(
+    (userId) => userId?.toString() === loginUserId?.toString()
+  );
+  if (alreadyDisLiked) {
+    const blog = await blogModel.findByIdAndUpdate(
+      blogId,
+      {
+        $pull: { disLikes: loginUserId },
+        isDisLiked: false,
+      },
+      { new: true }
+    );
+    res.json(blog);
+  }
+  if (isLiked) {
+    const blog = await blogModel.findByIdAndUpdate(
+      blogId,
+      {
+        $pull: { likes: loginUserId },
+        isLiked: false,
+      },
+      { new: true }
+    );
+    res.json(blog);
+  } else {
+    const blog = await blogModel.findByIdAndUpdate(
+      blogId,
+      {
+        $push: { likes: loginUserId },
+        isLiked: true,
+      },
+      { new: true }
+    );
+    res.json(blog);
+  }
+});
