@@ -62,7 +62,8 @@ module.exports.getAllProduct = asyncHandler(async (req, res) => {
       const productCount = await productModel.countDocuments();
       if (skip >= productCount) throw new Error("This page does not exists");
     }
-    req.json(findAllProduct);
+    const product = await query;
+    req.json(product);
   } catch (error) {
     throw new Error(error);
   }
