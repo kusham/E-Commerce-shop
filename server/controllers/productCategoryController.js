@@ -51,3 +51,13 @@ module.exports.getCategory = asyncHandler(async (req, res) => {
     throw Error(error);
   }
 });
+
+// get all category
+module.exports.getAllCategory = asyncHandler(async (req, res) => {
+  try {
+    const allCategory = await categoryModel.find();
+    res.json(allCategory);
+  } catch (error) {
+    throw Error(error);
+  }
+});
