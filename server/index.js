@@ -9,7 +9,9 @@ const dbConnect = require("./config/dbConnect");
 const authRoute = require("./routes/authRoutes");
 const productRoute = require("./routes/productRoutes");
 const blogRoute = require("./routes/blogRoutes");
-const categoryRoute = require("./routes/categoryRoutes");
+const productCategoryRoute = require("./routes/productCategoryRoutes");
+const blogCategoryRoute = require("./routes/blogCategoryRoutes");
+
 
 
 const { notFound, errorHandler } = require("./middleware/errorHandler");
@@ -30,7 +32,9 @@ app.listen(PORT, () => {
 app.use("/api/user", authRoute);
 app.use("/api/product", productRoute);
 app.use("/api/blog", blogRoute);
-app.use("/api/category", categoryRoute);
+app.use("/api/category", productCategoryRoute);
+app.use("/api/blog-category", blogCategoryRoute);
+
 
 
 
