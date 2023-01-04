@@ -173,7 +173,7 @@ module.exports.rating = asyncHandler(async (req, res) => {
     let totalRating = getAllRatings.ratings.length;
     let ratingSum = getAllRatings.ratings
       .map((item) => item.star)
-      .reduce((prev, curr) => prev_curr, 0);
+      .reduce((prev, curr) => prev + curr, 0);
     let actualRating = Math.round(ratingSum / totalRating);
 
     const finalProduct = await productModel.findByIdAndUpdate(
