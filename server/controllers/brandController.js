@@ -53,7 +53,7 @@ module.exports.getBrand = asyncHandler(async (req, res) => {
 });
 
 // get all Bran
-module.exports.getAllBran = asyncHandler(async (req, res) => {
+module.exports.getAllBrand = asyncHandler(async (req, res) => {
   try {
     const allBrand = await brandModel.find();
     res.json(allBrand);
