@@ -135,7 +135,7 @@ module.exports.addToWishList = asyncHandler(async (req, res) => {
 // add rating
 module.exports.rating = asyncHandler(async (req, res) => {
   const { _id } = req.user;
-  const { star, prodId } = req.body;
+  const { star, comment, prodId } = req.body;
 
   try {
     const product = await productModel.findById(prodId);
@@ -149,7 +149,7 @@ module.exports.rating = asyncHandler(async (req, res) => {
           ratings: { $elemMatch: alreadyRated },
         },
         {
-          $set: { "ratings.$.star": star },
+          $set: { "ratings.$.star": star, "ratings.$.comment": comment },
         },
         {
           new: true,
@@ -162,6 +162,7 @@ module.exports.rating = asyncHandler(async (req, res) => {
           $push: {
             ratings: {
               star: star,
+              comment: comment,
               postedBy: _id,
             },
           },
