@@ -35,3 +35,15 @@ module.exports.updateCoupon = asyncHandler(async (req, res) => {
     throw Error(error);
   }
 });
+
+// delete coupon
+module.exports.deleteCoupon = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    validateMongodbId(id);
+    try {
+      const deletedCoupon = await couponModel.findByIdAndDelete(id);
+      res.json(deletedCoupon);
+    } catch (error) {
+      throw Error(error);
+    }
+  });
