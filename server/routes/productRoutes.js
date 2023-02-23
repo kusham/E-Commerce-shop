@@ -7,6 +7,7 @@ const {
   deleteProduct,
   addToWishList,
   rating,
+  uploadImages,
 } = require("../controllers/productController");
 const { isAdmin, authMiddleware } = require("../middleware/middleware");
 const {
@@ -22,7 +23,8 @@ router.put(
   authMiddleware,
   isAdmin,
   uploadPhoto.array("images", 10),
-  productImageResize
+  productImageResize,
+  uploadImages
 );
 router.get("/:id", getProduct);
 router.put("/wishlist", authMiddleware, addToWishList);
