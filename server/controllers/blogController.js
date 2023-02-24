@@ -154,3 +154,32 @@ module.exports.disLikeBlog = asyncHandler(async (req, res) => {
     res.json(blog);
   }
 });
+
+
+// upload blog images
+module.exports.uploadImages = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  validateMongodbId(id);
+  try {
+    const uploader = (path) => cloudinaryUploadImg(path, "images");
+    const urls = [];
+    const files = req.files;
+    for (const file of files) {
+      const { path } = file;
+      const newPath = await uploader(path);
+      urls.push(newPath);
+    }
+    const findBlog = await blogModel.findByIdAndUpdate(
+      id,
+      {
+        images: urls.map((file) => {
+          return file;
+        }),
+      },
+      { new: true }
+    );
+    res.json(findBlog);
+  } catch (error) {
+    throw Error(error);
+  }
+});
