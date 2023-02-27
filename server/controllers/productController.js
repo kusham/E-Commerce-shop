@@ -3,7 +3,7 @@ const productModel = require("../models/productModel");
 const userModel = require("../models/userModel");
 const cloudinaryUploadImg = require("../utils/cloudinary");
 const validateMongodbId = require("../utils/validateMongodbId");
-
+const fs = require('fs');
 // create product
 module.exports.createProduct = asyncHandler(async (req, res) => {
   try {
@@ -204,6 +204,7 @@ module.exports.uploadImages = asyncHandler(async (req, res) => {
       const { path } = file;
       const newPath = await uploader(path);
       urls.push(newPath);
+      fs.unlinkSync(path);
     }
     const findProduct = await productModel.findByIdAndUpdate(
       id,
