@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const blogModel = require("../models/blogModel");
 const validateMongodbId = require("../utils/validateMongodbId");
-
+const fs = require('fs');
 // create blog
 module.exports.createBlog = asyncHandler(async (req, res) => {
   try {
@@ -168,6 +168,7 @@ module.exports.uploadImages = asyncHandler(async (req, res) => {
       const { path } = file;
       const newPath = await uploader(path);
       urls.push(newPath);
+      fs.unlinkSync(path);
     }
     const findBlog = await blogModel.findByIdAndUpdate(
       id,
