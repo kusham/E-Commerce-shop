@@ -48,6 +48,37 @@ module.exports.loginUser = asyncHandler(async (req, res) => {
   }
 });
 
+// admin login
+module.exports.adminLogin = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+  // check whether user exists
+  const findAdmin = await userModal.findOne({ email: email });
+  if (findAdmin && (await findAdmin.isPasswordMatched(password))) {
+    const refreshToken = await generateRefreshToken(findAdmin?._id);
+    const updatedUser = await userModal.findByIdAndUpdate(
+      findAdmin._id,
+      {
+        refreshToken: refreshToken,
+      },
+      { new: true }
+    );
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      maxAge: 72 * 60 * 60 * 1000,
+    });
+    res.json({
+      _id: findAdmin?._id,
+      firstName: findAdmin?.firstName,
+      lastName: findAdmin?.lastName,
+      email: findAdmin?.email,
+      mobile: findAdmin?.mobile,
+      token: generateToken(findAdmin?._id),
+    });
+  } else {
+    throw Error("Invalid Credentials");
+  }
+});
+
 // get all users
 module.exports.getAllUsers = asyncHandler(async (req, res) => {
   try {
