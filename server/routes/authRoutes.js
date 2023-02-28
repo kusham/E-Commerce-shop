@@ -12,6 +12,7 @@ const {
   updatePassword,
   forgetPasswordToken,
   resetPassword,
+  adminLogin,
 } = require("../controllers/userControllers");
 const { authMiddleware, isAdmin } = require("../middleware/middleware");
 
@@ -22,6 +23,8 @@ router.put("/password", authMiddleware, updatePassword);
 router.post("/forget-password-token", forgetPasswordToken);
 router.put("/reset-password/:token", resetPassword);
 router.post("/login", loginUser);
+router.post("/login-admin", adminLogin);
+
 router.get("/all-users", isAdmin, getAllUsers);
 router.get("/refresh", handleRefreshToken);
 router.get("/:id", authMiddleware, isAdmin, getSingleUser);
