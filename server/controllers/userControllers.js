@@ -279,3 +279,14 @@ module.exports.resetPassword = asyncHandler(async (req, res) => {
   await userModal.save();
   req.json(user);
 });
+
+// get wishList
+module.exports.getWishList = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  try {
+    const findUser = await userModal.findById(_id).populate("wishlist");
+    res.json(findUser);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
