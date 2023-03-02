@@ -13,6 +13,7 @@ const {
   forgetPasswordToken,
   resetPassword,
   adminLogin,
+  getWishList,
 } = require("../controllers/userControllers");
 const { authMiddleware, isAdmin } = require("../middleware/middleware");
 
@@ -28,6 +29,7 @@ router.post("/login-admin", adminLogin);
 router.get("/all-users", isAdmin, getAllUsers);
 router.get("/refresh", handleRefreshToken);
 router.get("/:id", authMiddleware, isAdmin, getSingleUser);
+router.get("/wishlist", authMiddleware, getWishList);
 router.delete("/:id", deleteUser);
 
 router.put("/edit-user", authMiddleware, updateUser);
