@@ -79,6 +79,26 @@ module.exports.adminLogin = asyncHandler(async (req, res) => {
   }
 });
 
+// save user address
+module.exports.saveAddress = asyncHandler(async (req, res) => {
+  try {
+    const { _id } = req.user;
+    validateMongodbId(id);
+    const updatedUser = await userModal.findByIdAndUpdate(
+      _id,
+      {
+        address: req?.body?.address,
+      },
+      {
+        new: true,
+      }
+    );
+    res.json(updatedUser);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
 // get all users
 module.exports.getAllUsers = asyncHandler(async (req, res) => {
   try {
