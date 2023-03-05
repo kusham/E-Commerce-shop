@@ -303,6 +303,7 @@ module.exports.resetPassword = asyncHandler(async (req, res) => {
 // get wishList
 module.exports.getWishList = asyncHandler(async (req, res) => {
   const { _id } = req.user;
+  validateMongodbId(id);
   try {
     const findUser = await userModal.findById(_id).populate("wishlist");
     res.json(findUser);
