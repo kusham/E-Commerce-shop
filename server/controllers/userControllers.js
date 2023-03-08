@@ -359,7 +359,22 @@ module.exports.getUserCart = asyncHandler(async (req, res) => {
   const { _id } = req.user;
   validateMongodbId(id);
   try {
-    const cart = await cartModel.findOne({ orderBy: _id }).populate("products.product");
+    const cart = await cartModel
+      .findOne({ orderBy: _id })
+      .populate("products.product");
+    res.json(cart);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+// empty cart
+module.exports.emptyCart = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  validateMongodbId(id);
+  try {
+    const user = await userModal.findOne({ _id });
+    const cart = await cartModel.findByIdAndRemove({ orderBy: user._id });
     res.json(cart);
   } catch (error) {
     throw new Error(error);
