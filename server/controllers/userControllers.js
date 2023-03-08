@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const sendEmail = require("./emailController");
 const cartModel = require("../models/cartModel");
 const productModel = require("../models/productModel");
+const couponModel = require("../models/couponModel");
 
 module.exports.createUser = asyncHandler(async (req, res) => {
   const email = req.body.email;
@@ -376,6 +377,35 @@ module.exports.emptyCart = asyncHandler(async (req, res) => {
     const user = await userModal.findOne({ _id });
     const cart = await cartModel.findByIdAndRemove({ orderBy: user._id });
     res.json(cart);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+// apply coupon
+module.exports.applyCoupon = asyncHandler(async (req, res) => {
+  const { coupon } = req.body;
+  const { _id } = req.user;
+  validateMongodbId(id);
+  try {
+    const validCoupon = await couponModel.findOne({ name: coupon });
+    if (validCoupon === null) {
+      throw new Error("Invalid Coupon");
+    }
+    const user = await userModal.findOne({ _id });
+    let { products, cartTotal } = await cartModel
+      .findOne({ orderBy: user._id })
+      .populate("products.product");
+    let totalAfterDiscount = (
+      cartTotal -
+      (cartTotal * validCoupon.discount) / 100
+    ).toFixed(2);
+    await cartModel.findByIdAndUpdate(
+      { orderBy: user._id },
+      { totalAfterDiscount },
+      { new: true }
+    );
+    res.json(totalAfterDiscount);
   } catch (error) {
     throw new Error(error);
   }
