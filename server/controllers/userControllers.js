@@ -410,3 +410,50 @@ module.exports.applyCoupon = asyncHandler(async (req, res) => {
     throw new Error(error);
   }
 });
+
+// create order
+module.exports.createOrder = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  const { COD, couponApplied } = req.body;
+  validateMongodbId(id);
+  try {
+    if (!COD) {
+      throw new Error("Create cash order failed");
+    }
+    const user = await userModal.findOne({ _id });
+    const userCart = await cartModel.findOne({ orderBy: user._id });
+    let finalAmount = 0;
+    if (couponApplied && userCart.totalAfterDiscount) {
+      finalAmount = userCart.totalAfterDiscount * 100;
+    } else {
+      finalAmount = userCart.cartTotal * 100;
+    }
+
+    let newOrder = await new orderModel({
+      products: userCart.products,
+      paymentIntent: {
+        id: uniqid(),
+        method: "COD",
+        amount: finalAmount,
+        status: "Cash on Delivery",
+        created: Date.now(),
+        currency: "usd",
+      },
+      orderBy: user._id,
+      orderStatus: "Cash on Delivery",
+    }).save();
+
+    let update = userCart.products.map((item) => {
+      return {
+        updateOne: {
+          filter: { _id: item.product._id },
+          update: { $inc: { quantity: -item.count, sold: +item.count } },
+        },
+      };
+    });
+    const updated = await productModel.bulkWrite(update, {});
+    res.json({ message: "success" });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
