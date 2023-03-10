@@ -457,3 +457,15 @@ module.exports.createOrder = asyncHandler(async (req, res) => {
     throw new Error(error);
   }
 });
+
+// get orders
+module.exports.getOrders = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  validateMongodbId(id);
+  try {
+    const userOrders = await orderModel.findOne({ orderBy: _id });
+    res.json(userOrders);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
