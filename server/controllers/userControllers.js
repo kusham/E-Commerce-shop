@@ -463,7 +463,9 @@ module.exports.getOrders = asyncHandler(async (req, res) => {
   const { _id } = req.user;
   validateMongodbId(id);
   try {
-    const userOrders = await orderModel.findOne({ orderBy: _id });
+    const userOrders = await orderModel
+      .findOne({ orderBy: _id })
+      .populate("products.product").exec();
     res.json(userOrders);
   } catch (error) {
     throw new Error(error);
