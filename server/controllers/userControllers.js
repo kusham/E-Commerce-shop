@@ -465,8 +465,31 @@ module.exports.getOrders = asyncHandler(async (req, res) => {
   try {
     const userOrders = await orderModel
       .findOne({ orderBy: _id })
-      .populate("products.product").exec();
+      .populate("products.product")
+      .exec();
     res.json(userOrders);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+// update orders
+module.exports.updateOrderStatus = asyncHandler(async (req, res) => {
+  const { status } = req.body;
+  const { id } = req.params;
+  validateMongodbId(id);
+  try {
+    const updateOrderStatus = await orderModel.findByIdAndUpdate(
+      id,
+      {
+        orderStatus: status,
+        paymentIntent: {
+          status: status,
+        },
+      },
+      { new: true }
+    );
+    res.json(updateOrderStatus);
   } catch (error) {
     throw new Error(error);
   }
