@@ -21,4 +21,4 @@ var cartSchema = new mongoose.Schema(
 );
 
 //Export the model
-module.exports = mongoose.model("User", cartSchema);
+module.exports = mongoose.model("Cart", cartSchema);
