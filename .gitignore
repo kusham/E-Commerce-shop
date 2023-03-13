@@ -1,2 +1,2 @@
-server/node_modules
-server/.env
+server
+client-FE/node_modules
