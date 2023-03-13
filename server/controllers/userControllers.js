@@ -1,5 +1,6 @@
 const userModal = require("../models/userModel");
 const asyncHandler = require("express-async-handler");
+const uniqid = require('uniqid');
 const { generateToken } = require("../config/jwtToken");
 const validateMongodbId = require("../utils/validateMongodbId");
 const { generateRefreshToken } = require("../config/refreshToken");
