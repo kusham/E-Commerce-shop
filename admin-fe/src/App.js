@@ -2,8 +2,8 @@
 
 function App() {
   return (
-    <>
-    </>
+    <React.Fragment>
+    </React.Fragment>
   );
 }
 
