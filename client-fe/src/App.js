@@ -19,20 +19,21 @@ import Wishlist from "./pages/Wishlist";
 import RefundPloicy from "./pages/RefundPloicy";
 import ShippingPolicy from "./pages/ShippingPolicy";
 import TermAndContions from "./pages/TermAndContions";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import CompareProduct from "./pages/CompareProduct";
 
 function App() {
   return (
     <React.Fragment>
       <BrowserRouter>
+      <Header />
         <Routes>
           <Route path="/" element={<Layout />} />
           <Route index element={<Home />} />
-          <Route path="login" element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
-
           <Route path="reset-password" element={<Resetpassword />} />
-
           <Route path="blogs" element={<Blog />} />
           <Route path="blog/:id" element={<SingleBlog />} />
           <Route path="product/:id" element={<SingleProduct />} />
@@ -46,10 +47,13 @@ function App() {
           <Route path="refund-policy" element={<RefundPloicy />} />
           <Route path="shipping-policy" element={<ShippingPolicy />} />
           <Route path="term-conditions" element={<TermAndContions />} />
+          <Route path="compare-product" element={<CompareProduct />} />
+
 
 
 
         </Routes>
+      <Footer />
       </BrowserRouter>
     </React.Fragment>
   );
