@@ -1,13 +1,12 @@
 import React from "react";
 import ReactStars from "react-rating-stars-component";
 import { Link, useLocation } from "react-router-dom";
-import prodcompare from "../../resources/images/prodcompare.svg";
-import wish from "../../resources/images/wish.svg";
-import wishlist from "../../resources/images/wishlist.svg";
-import watch from "../../resources/images/watch.jpg";
-import watch2 from "../../resources/images/watch-1.avif";
-import addcart from "../../resources/images/add-cart.svg";
-import view from "../../resources/images/view.svg";
+import prodcompare from "../resources/images/prodcompare.svg";
+import wish from "../resources/images/wish.svg";
+import watch from "../resources/images/watch.jpg";
+// import watch2 from "../resources/images/watch-1.avif";
+import addcart from "../resources/images/add-cart.svg";
+import view from "../resources/images/view.svg";
 const ProductCard = (props) => {
   const { grid } = props;
   console.log(grid);
@@ -17,14 +16,14 @@ const ProductCard = (props) => {
     <>
       <div
         className={` ${
-          location.pathname == "/product" ? `gr-${grid}` : "col-3"
+          location.pathname === "/product" ? `gr-${grid}` : "col-3"
         } `}
       >
         <Link
           to={`${
-            location.pathname == "/"
+            location.pathname === "/"
               ? "/product/:id"
-              : location.pathname == "/product/:id"
+              : location.pathname === "/product/:id"
               ? "/product/:id"
               : ":id"
           }`}
@@ -36,8 +35,8 @@ const ProductCard = (props) => {
             </button>
           </div>
           <div className="product-image">
-            <img src={watch} className="img-fluid" alt="product image" />
-            <img src={watch2} className="img-fluid" alt="product image" />
+            <img src={watch} className="img-fluid" alt="product" />
+            <img src={watch} className="img-fluid" alt="product" />
           </div>
           <div className="product-details">
             <h6 className="brand">Havels</h6>
@@ -76,14 +75,14 @@ const ProductCard = (props) => {
       </div>
       <div
         className={` ${
-          location.pathname == "/product" ? `gr-${grid}` : "col-3"
+          location.pathname === "/product" ? `gr-${grid}` : "col-3"
         } `}
       >
         <Link
           to={`${
-            location.pathname == "/"
+            location.pathname === "/"
               ? "/product/:id"
-              : location.pathname == "/product/:id"
+              : location.pathname === "/product/:id"
               ? "/product/:id"
               : ":id"
           }`}
@@ -95,8 +94,8 @@ const ProductCard = (props) => {
             </button>
           </div>
           <div className="product-image">
-            <img src={watch} className="img-fluid" alt="product image" />
-            <img src={watch2} className="img-fluid" alt="product image" />
+            <img src={watch} className="img-fluid" alt="product" />
+            <img src={watch} className="img-fluid" alt="product" />
           </div>
           <div className="product-details">
             <h6 className="brand">Havels</h6>
