@@ -9,6 +9,7 @@ function App() {
     <React.Fragment>
       <BrowserRouter>
         <Routes>
+        <Route index element={<Home />} />
           <Route path="login" element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
