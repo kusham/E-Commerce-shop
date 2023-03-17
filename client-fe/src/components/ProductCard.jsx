@@ -1,13 +1,13 @@
 import React from "react";
 import ReactStars from "react-rating-stars-component";
 import { Link, useLocation } from "react-router-dom";
-import prodcompare from "../images/prodcompare.svg";
-import wish from "../images/wish.svg";
-import wishlist from "../images/wishlist.svg";
-import watch from "../images/watch.jpg";
-import watch2 from "../images/watch-1.avif";
-import addcart from "../images/add-cart.svg";
-import view from "../images/view.svg";
+import prodcompare from "../../resources/images/prodcompare.svg";
+import wish from "../../resources/images/wish.svg";
+import wishlist from "../../resources/images/wishlist.svg";
+import watch from "../../resources/images/watch.jpg";
+import watch2 from "../../resources/images/watch-1.avif";
+import addcart from "../../resources/images/add-cart.svg";
+import view from "../../resources/images/view.svg";
 const ProductCard = (props) => {
   const { grid } = props;
   console.log(grid);
