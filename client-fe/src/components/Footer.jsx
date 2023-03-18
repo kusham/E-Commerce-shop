@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { BsLinkedin, BsGithub, BsYoutube, BsInstagram } from "react-icons/bs";
-import newsletter from "../../resources/images/newsletter.png";
+import newsletter from "../resources/images/newsletter.png";
 const Footer = () => {
   return (
     <>
@@ -54,16 +54,16 @@ const Footer = () => {
                   navdeepdahiya753@gmail.com
                 </a>
                 <div className="social_icons d-flex align-items-center gap-30 mt-4">
-                  <a className="text-white" href="#">
+                  <a className="text-white" href="#ty">
                     <BsLinkedin className="fs-4" />
                   </a>
-                  <a className="text-white" href="#">
+                  <a className="text-white" href="#dg">
                     <BsInstagram className="fs-4" />
                   </a>
-                  <a className="text-white" href="#">
+                  <a className="text-white" href="#dg">
                     <BsGithub className="fs-4" />
                   </a>
-                  <a className="text-white" href="#">
+                  <a className="text-white" href="#df">
                     <BsYoutube className="fs-4" />
                   </a>
                 </div>
