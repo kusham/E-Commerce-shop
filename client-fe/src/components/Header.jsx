@@ -1,11 +1,11 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
-import compare from "../../resources/images/compare.svg";
-import wishlist from "../../resources/images/wishlist.svg";
-import user from "../../resources/images/user.svg";
-import cart from "../../resources/images/cart.svg";
-import menu from "../../resources/images/menu.svg";
+import compare from "../resources/images/compare.svg";
+import wishlist from "../resources/images/wishlist.svg";
+import user from "../resources/images/user.svg";
+import cart from "../resources/images/cart.svg";
+import menu from "../resources/images/menu.svg";
 const Header = () => {
   return (
     <>
