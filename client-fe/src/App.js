@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Layout from "./components/Layout";
 import Blog from "./pages/Blog";
 import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
 
           <Route path="blogs" element={<Blog />} />
           <Route path="cart" element={<Cart />} />
+          <Route path="checkout" element={<Checkout />} />
         </Routes>
       </BrowserRouter>
     </React.Fragment>
