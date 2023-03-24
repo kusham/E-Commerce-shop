@@ -9,6 +9,7 @@ import Blog from "./pages/Blog";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Forgotpassword from "./pages/Forgotpassword";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="cart" element={<Cart />} />
           <Route path="checkout" element={<Checkout />} />
           <Route path="forgot-password" element={<Forgotpassword />} />
+          <Route path="contact" element={<Contact />} />
         </Routes>
       </BrowserRouter>
     </React.Fragment>
