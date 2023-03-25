@@ -28,6 +28,7 @@ function App() {
 
           <Route path="blogs" element={<Blog />} />
           <Route path="blog/:id" element={<SingleBlog />} />
+          <Route path="product/:id" element={<SingleProduct />} />
           <Route path="cart" element={<Cart />} />
           <Route path="checkout" element={<Checkout />} />
           <Route path="forgot-password" element={<Forgotpassword />} />
