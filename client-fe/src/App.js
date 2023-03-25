@@ -31,6 +31,8 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="product" element={<OurStore />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="refund-policy" element={<RefundPloicy />} />
+
         </Routes>
       </BrowserRouter>
     </React.Fragment>
