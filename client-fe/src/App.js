@@ -11,6 +11,7 @@ import Checkout from "./pages/Checkout";
 import Forgotpassword from "./pages/Forgotpassword";
 import Contact from "./pages/Contact";
 import OurStore from "./pages/OurStore";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="forgot-password" element={<Forgotpassword />} />
           <Route path="contact" element={<Contact />} />
           <Route path="product" element={<OurStore />} />
+          <Route path="privacy-policy" element={<PrivacyPolicy />} />
         </Routes>
       </BrowserRouter>
     </React.Fragment>
