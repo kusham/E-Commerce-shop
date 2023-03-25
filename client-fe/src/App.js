@@ -27,6 +27,7 @@ function App() {
           <Route path="reset-password" element={<Resetpassword />} />
 
           <Route path="blogs" element={<Blog />} />
+          <Route path="blog/:id" element={<SingleBlog />} />
           <Route path="cart" element={<Cart />} />
           <Route path="checkout" element={<Checkout />} />
           <Route path="forgot-password" element={<Forgotpassword />} />
