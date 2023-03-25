@@ -24,6 +24,8 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
 
+          <Route path="reset-password" element={<Resetpassword />} />
+
           <Route path="blogs" element={<Blog />} />
           <Route path="cart" element={<Cart />} />
           <Route path="checkout" element={<Checkout />} />
@@ -32,6 +34,7 @@ function App() {
           <Route path="product" element={<OurStore />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="refund-policy" element={<RefundPloicy />} />
+
 
         </Routes>
       </BrowserRouter>
