@@ -34,6 +34,8 @@ function App() {
           <Route path="product" element={<OurStore />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="refund-policy" element={<RefundPloicy />} />
+          <Route path="shipping-policy" element={<ShippingPolicy />} />
+
 
 
         </Routes>
