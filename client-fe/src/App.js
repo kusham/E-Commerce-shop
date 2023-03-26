@@ -30,6 +30,7 @@ function App() {
           <Route path="blog/:id" element={<SingleBlog />} />
           <Route path="product/:id" element={<SingleProduct />} />
           <Route path="cart" element={<Cart />} />
+          <Route path="wishlist" element={<Wishlist />} />
           <Route path="checkout" element={<Checkout />} />
           <Route path="forgot-password" element={<Forgotpassword />} />
           <Route path="contact" element={<Contact />} />
