@@ -8,7 +8,7 @@ import Color from "../components/Color";
 import { TbGitCompare } from "react-icons/tb";
 import { AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import watch from "../images/watch.jpg";
+import watch from "../resources/images/watch.jpg";
 import Container from "../components/Container";
 const SingleProduct = () => {
   const props = {
