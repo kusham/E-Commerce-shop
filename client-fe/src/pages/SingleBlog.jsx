@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import BreadCrumb from "../components/BreadCrumb";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import Meta from "../components/Meta";
-import blog from "../images/blog-1.jpg";
+import blog from "../resources/images/blog-1.jpg";
 import Container from "../components/Container";
 
 const SingleBlog = () => {
