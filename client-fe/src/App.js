@@ -12,6 +12,13 @@ import Forgotpassword from "./pages/Forgotpassword";
 import Contact from "./pages/Contact";
 import OurStore from "./pages/OurStore";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Resetpassword from "./pages/Resetpassword";
+import SingleBlog from "./pages/SingleBlog";
+import SingleProduct from "./pages/SingleProduct";
+import Wishlist from "./pages/Wishlist";
+import RefundPloicy from "./pages/RefundPloicy";
+import ShippingPolicy from "./pages/ShippingPolicy";
+import TermAndContions from "./pages/TermAndContions";
 
 function App() {
   return (
